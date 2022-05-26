@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+const db = require('./controller/dao/dbConnection');
+
 
 // Para compilar en desarrollo: npm run dev
 
@@ -39,7 +41,9 @@ app.use(express.static('public'));
 
 // Rutas
 app.get('/', (req, res) => {
-    res.render("index.ejs")
+
+    res.render("index.ejs");
+
 });
 
 
