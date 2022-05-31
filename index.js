@@ -47,7 +47,15 @@ app.get('/', (req, res) => {
 app.get('/admin/peliculas', (req, res) => {
     res.render("peliculasAdmin.ejs");
 });
-
+app.get('/admin/alimentos', (req, res) => {
+    res.render("alimentosAdmin.ejs");
+});
+app.get('/admin/clientes', (req, res) => {
+    res.render("clientesAdmin.ejs");
+});
+app.get('/admin/cartelera', (req, res) => {
+    res.render("carteleraAdmin.ejs");
+});
 
 
 /*Rutas
