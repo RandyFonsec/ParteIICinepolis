@@ -9,7 +9,7 @@
                 <div class="col">
 
 
-                    <button type="button" class="btn btn-primary">Agregar película</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar película</button>
                 </div>
             </div>
 
@@ -74,6 +74,58 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar película</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="idTitulo" class="form-label">Título</label>
+                                <input type="text" name="titulo" class="form-control" id="idTitulo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idDir" class="form-label">Director</label>
+                                <input type="text" name="director" class="form-control" id="idDir">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idAc" class="form-label">Actores</label>
+                                <input type="text" name="actores" class="form-control" id="idAc">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idGen" class="form-label">Géneros</label>
+                                <input type="text" name="generos" class="form-control" id="idGen">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idi" class="form-label">Idiomas</label>
+                                <input type="text" name="idiomas" class="form-control" id="idi">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pub" class="form-label">Año de publicación</label>
+                                <input type="text" name="annoPublicacion" class="form-control" id="pub">
+                            </div>
+                            <div class="mb-3">
+                                <label for="dur" class="form-label ">Duración</label>
+                                <input type="text" name="duracion" class="form-control" id="dur">
+                            </div>
+                            <div class="mb-3">
+                                <label for="edr" class="form-label ">Edad requerida</label>
+                                <input type="text" name="edadRequerida" class="form-control" id="edr">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar película</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal-->
+
+
     </div>
 
     <%- include( 'partials/_footerAdmin')%>

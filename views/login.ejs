@@ -29,8 +29,53 @@
                                 <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                                 <input type="password" name="contrasenna" class="form-control" id="exampleInputPassword1">
                             </div>
-                            <a href="#">Crear cuenta</a> <br>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear cuenta</a> <br>
                             <button type="submit" class="btn btn-primary mt-2">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="idName" class="form-label">Nombre</label>
+                                <input type="text" name="nombre" class="form-control" id="idName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idApe1" class="form-label">Primer apellido</label>
+                                <input type="text" name="apellido1" class="form-control" id="idApe1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idApe2" class="form-label">Segundo apellido</label>
+                                <input type="text" name="apellido2" class="form-control" id="idApe2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idCorreo" class="form-label">Correo</label>
+                                <input type="email" name="correo" class="form-control" id="idCorreo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idEdad" class="form-label">Edad</label>
+                                <input type="number" name="edad" class="form-control" id="idEdad">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Fecha de nacimiento</label>
+                                <input type="email" name="" class="form-control" id="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idVacunas" class="form-label">Vacunas</label>
+                                <input type="number" name="vacunas" class="form-control" id="idVacunas">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Crear cuenta</button>
                         </form>
                     </div>
                 </div>

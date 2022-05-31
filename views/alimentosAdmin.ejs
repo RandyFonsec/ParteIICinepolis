@@ -9,7 +9,7 @@
                 <div class="col">
 
 
-                    <button type="button" class="btn btn-primary">Agregar alimento</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar alimento</button>
                 </div>
             </div>
             <div class="row mt-5 mb-2">
@@ -58,6 +58,49 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar alimento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nombre</label>
+                                <input type="text" name="nombre" class="form-control" id="nom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cant" class="form-label">Cantidad</label>
+                                <input type="number" name="cantidad" class="form-control" id="cant">
+                            </div>
+
+                            <!-- Tipo Combobox -->
+                            <label for="tip" class="form-label">Tipo alimento</label>
+                            <select name="tipo" id="tip" class="form-select mb-3" aria-label="Default select example">
+                                <option selected>Tipo de alimento</option>
+                                <option value="1">Bebida</option>
+                                <option value="2">Comida</option>
+                                <option value="3">Combo</option>
+                              </select>
+
+                            <div class="mb-3">
+                                <label for="prec" class="form-label">Precio</label>
+                                <input type="number" name="precio" class="form-control" id="prec">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Agregar alimento</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal-->
+
+
     </div>
 
     <%- include( 'partials/_footerAdmin')%>
