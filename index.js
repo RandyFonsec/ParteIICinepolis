@@ -44,6 +44,10 @@ app.get('/', (req, res) => {
     res.render("login.ejs");
 });
 
+app.get('/admin/peliculas', (req, res) => {
+    res.render("peliculasAdmin.ejs");
+});
+
 
 
 /*Rutas
