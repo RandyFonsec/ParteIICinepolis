@@ -54,12 +54,17 @@ app.get('/admin/alimentos', (req, res) => {
 app.get('/admin/clientes', (req, res) => {
     res.render("clientesAdmin.ejs");
 });
-
+app.get('/admin/cartelera', (req, res) => {
+    res.render("carteleraAdmin.ejs");
+});
 
 // ------------- CLIENTE
 app.get('/cliente/cartelera', (req, res) => {
-    res.render("carteleraCliente.ejs");
+    res.render("carteleraCliente.ejs", { listaPeliculasm, listam });
 });
+
+
+
 app.get('/cliente/Alimentos', (req, res) => {
     res.render("alimentosCliente.ejs");
 });
