@@ -40,10 +40,11 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Rutas
+
+// ------------- ADMIN
 app.get('/', (req, res) => {
     res.render("login.ejs");
 });
-
 app.get('/admin/peliculas', (req, res) => {
     res.render("peliculasAdmin.ejs");
 });
@@ -53,8 +54,17 @@ app.get('/admin/alimentos', (req, res) => {
 app.get('/admin/clientes', (req, res) => {
     res.render("clientesAdmin.ejs");
 });
-app.get('/admin/cartelera', (req, res) => {
-    res.render("carteleraAdmin.ejs");
+
+
+// ------------- CLIENTE
+app.get('/cliente/cartelera', (req, res) => {
+    res.render("carteleraCliente.ejs");
+});
+app.get('/cliente/Alimentos', (req, res) => {
+    res.render("alimentosCliente.ejs");
+});
+app.get('/cliente/carrito', (req, res) => {
+    res.render("carrito.ejs");
 });
 
 
