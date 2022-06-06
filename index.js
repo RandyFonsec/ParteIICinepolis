@@ -64,9 +64,47 @@ app.post('/', async(req, res) => {
     }
 });
 
-app.get('/admin/peliculas', async(req, res) => {
-    // const peliculas = await controller.obtenerPeliculas();
-    res.render("peliculasAdmin.ejs"); //, { peliculas });
+app.get('/admin/peliculas', async (req, res) => {
+    const peliculas = await controller.obtenerPeliculas();
+    const directores = await controller.obtenerDirectores();
+    const actores = await controller.obtenerActores();
+    const generos = await controller.obtenerGeneros();
+    const idiomas = await controller.obtenerIdiomas();
+    res.render("peliculasAdmin.ejs", { peliculas, directores, actores, generos, idiomas });
+});
+
+app.post('/admin/registroPelicula', async (req, res) => {
+    const { titulo, director, actor, genero, idioma, annoPublicacion, duracion, edadRequerida, precioEntrada } = req.body;
+    const pelicula = { titulo, director, actor, genero, idioma, annoPublicacion, duracion, edadRequerida, precioEntrada };
+    await controller.registrarPelicula(pelicula);   
+    res.redirect('/admin/peliculas');
+});
+
+app.post("/admin/modificarPelicula/:idPelicula", async (req, res) => {
+    const { idPelicula } = req.params;
+    console.log("idPelicula: " + idPelicula);
+    const pelicula = await controller.obtenerPelicula(idPelicula);
+    const directores = await controller.obtenerDirectores();
+    const actores = await controller.obtenerActores();
+    const generos = await controller.obtenerGeneros();
+    const idiomas = await controller.obtenerIdiomas();
+    res.render("modificarPelicula.ejs", { pelicula : pelicula[0] , directores, actores, generos, idiomas });
+});
+
+app.post("/admin/eliminarPelicula/:idPelicula", async(req, res) => {
+    let { idPelicula } = req.params;
+    await controller.eliminarPelicula(idPelicula);
+    res.redirect('/admin/peliculas');
+});
+
+app.post('/admin/actualizarPelicula/:idPelicula', async(req, res) => {
+    const { idPelicula } = req.params;
+    const { titulo, director, actor, genero, idioma, annoPublicacion, duracion, edadRequerida, precioEntrada } = req.body;
+    const pelicula = { titulo, director, actor, genero, idioma, annoPublicacion, duracion, edadRequerida, precioEntrada };
+    console.log(pelicula);
+    console.log(idPelicula);
+    await controller.actualizarPelicula(idPelicula, pelicula);
+    res.redirect('/admin/peliculas');
 });
 
 app.get('/admin/alimentos', (req, res) => {
@@ -110,11 +148,6 @@ app.get('/cliente/alimentos/:id', async(req, res) => {
 app.get('/cliente/carrito', (req, res) => {
     res.render("carrito.ejs");
 });
-
-
-/*Rutas
-app.use('/admin', routesAdmin);
-*/
 
 app.get('*', (req, res) => {
     res.send("404 ERROR");

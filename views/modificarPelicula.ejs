@@ -1,0 +1,71 @@
+
+<%- include( 'partials/_headerAdmin')%>
+
+<!-- Modal -->
+<div class="container my-4 d-flex justify-content-center">
+    
+            
+            <div class="container">
+                <div class="mb-3">
+                <label for="" class="fs-2 text">Modificar película:</label>
+            </div>
+                <form action="/admin/actualizarPelicula/<%=pelicula.idPelicula%>" method="post">
+                    <div class="mb-3">
+                        <label for="idTitulo" class="form-label">Título</label>
+                        <input type="text" name="titulo" class="form-control" id="idTitulo" value="<%=pelicula.titulo%>">
+                    </div>
+                    <label class="mb-3" for="director">Director</label>
+                    <div class="mb-3">
+                        <select name="director" class="form-select" aria-label="Directores">
+                            <% directores.forEach (function (director) { %>
+                                <option value="<%=director.idDirector%>"><%= director.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <label class="mb-3" for="actor">Actor</label>
+                    <div class="mb-3">
+                        <select name="actor" class="form-select" aria-label="Actores">
+                            <% actores.forEach (function (actor) { %>
+                                <option value="<%=actor.idActor%>"><%= actor.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <label class="mb-3" for="genero">Genero</label>
+                    <div class="mb-3">
+                        <select name="genero" class="form-select" aria-label="Generos">
+                            <% generos.forEach (function (genero) { %>
+                                <option value="<%=genero.idGenero%>"><%= genero.nombreGenero %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <label class="mb-3" for="idioma">Idioma</label>
+                    <div class="mb-3">
+                        <select name="idioma" class="form-select" aria-label="Idiomas">
+                            <% idiomas.forEach (function (idioma) { %>
+                                <option value="<%=idioma.idIdioma%>"><%= idioma.nombreIdioma %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pub" class="form-label">Año de publicación</label>
+                        <input type="text" name="annoPublicacion" class="form-control" id="pub" value="<%=pelicula.annoPublicacion%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dur" class="form-label ">Duración</label>
+                        <input type="text" name="duracion" class="form-control" id="dur" value="<%=pelicula.duracion%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edr" class="form-label ">Edad requerida</label>
+                        <input type="text" name="edadRequerida" class="form-control" id="edr" value="<%=pelicula.edadRequerida%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioentrada" class="form-label ">Precio de entrada</label>
+                        <input type="text" name="precioEntrada" class="form-control" id="precioentrada" value="<%=pelicula.precioEntrada%>">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Modificar película</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include( 'partials/_footerAdmin')%>
