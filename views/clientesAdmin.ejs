@@ -14,9 +14,9 @@
                             <tr>
                                 <th scope="col">Cédula</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Apellido 1</th>
-                                <th scope="col">Apellido 2</th>
-                                <th scope="col">Correo</th>
+                                <th scope="col">Primer apellido</th>
+                                <th scope="col">Segundo apellido</th>
+                                <th scope="col">Correo electrónico</th>
                                 <th scope="col">Edad</th>
                                 <th scope="col">Fecha de nacimiento</th>
                                 <th scope="col">Vacunas</th>
@@ -24,36 +24,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">123423</th>
-                                <td>Actores1</td>
-                                <td>Generos1</td>
-                                <td>Idiomas1</td>
-                                <td>Año1</td>
-                                <td>Duracion1</td>
-                                <td>Edad1</td>
-                                <td>Precios</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5565343</th>
-                                <td>Actores1</td>
-                                <td>Generos1</td>
-                                <td>Idiomas1</td>
-                                <td>Año1</td>
-                                <td>Duracion1</td>
-                                <td>Edad1</td>
-                                <td>Precios</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
+                            <% clientes.forEach (function (cliente) { %>
+                                <tr>
+                                    <th scope="row"><%=cliente.numeroCedula%></th>
+                                    <td><%=cliente.nombre%></td>
+                                    <td><%=cliente.apellido1%></td>
+                                    <td><%=cliente.apellido2%></td>
+                                    <td><%=cliente.correoElectronico%></td>
+                                    <td><%=cliente.edad%></td>
+                                    <td><%=cliente.fechaNac%></td>
+                                    <td><%=cliente.cantidadVacunas%></td>
+                                    <td>
+                                        <form action="modificarCliente/<%=cliente.idCliente%>" method="post">
+                                            <button type="submit" class="btn btn-success">Modificar </button>
+                                        </form>
+                                        <form action="eliminarCliente/<%=cliente.idCliente%>" method="post">
+                                            <button type="submit" class="btn btn-danger">Eliminar </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>

@@ -20,39 +20,31 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Tipo</th>
+                                <th scope="col">Cantidad disponible</th>
+                                <th scope="col">Tipo de alimento</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>La peli</td>
-                                <td>comida1</td>
-                                <td>Actores1</td>
-                                <td>precio</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>comida2</td>
-                                <td>Director2</td>
-                                <td>Actores2</td>
-                                <td>Generos2</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
+                            <% alimentos.forEach (function (alimento) { %>
+                                <tr>
+                                    <!-- <th scope="row">pelicula.</th> -->
+                                    <td><%=alimento.nombre%></td>
+                                    <td><%=alimento.cantidadDisponible%></td>
+                                    <td><%=alimento.precio%></td>
+                                    <td><%=alimento.tipo%></td>
+                                    <td>
+                                        <form action="modificarAlimento/<%=alimento.idAlimento%>" method="post">
+                                            <button type="submit" class="btn btn-success">Modificar </button>
+                                        </form>
+                                        <form action="eliminarAlimento/<%=alimento.idAlimento%>" method="post">
+                                            <button type="submit" class="btn btn-danger">Eliminar </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>
@@ -67,23 +59,22 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="registroAlimento" method="post">
                             <div class="mb-3">
                                 <label for="nom" class="form-label">Nombre</label>
                                 <input type="text" name="nombre" class="form-control" id="nom">
                             </div>
                             <div class="mb-3">
-                                <label for="cant" class="form-label">Cantidad</label>
+                                <label for="cant" class="form-label">Cantidad disponible</label>
                                 <input type="number" name="cantidad" class="form-control" id="cant">
                             </div>
 
                             <!-- Tipo Combobox -->
-                            <label for="tip" class="form-label">Tipo alimento</label>
+                            <label for="tip" class="form-label">Tipo de alimento</label>
                             <select name="tipo" id="tip" class="form-select mb-3" aria-label="Default select example">
-                                <option selected>Tipo de alimento</option>
-                                <option value="1">Bebida</option>
-                                <option value="2">Comida</option>
-                                <option value="3">Combo</option>
+                                <% tiposAlimento.forEach (function (tipoAlimento) { %>
+                                    <option value="<%=tipoAlimento.idTipoAlimento%>"><%= tipoAlimento.tipo %></option>
+                                <% }) %>
                               </select>
 
                             <div class="mb-3">

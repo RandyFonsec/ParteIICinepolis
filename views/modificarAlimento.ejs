@@ -1,0 +1,42 @@
+
+<%- include( 'partials/_headerCliente')%>
+
+<!-- Modal -->
+<div class="container my-4 d-flex justify-content-center">
+    
+            
+            <div class="container">
+                <div class="mb-3">
+                <label for="" class="fs-2 text">Modificar alimento:</label>
+            </div>
+            <form action="/admin/actualizarAlimento/<%=alimento.idAlimento%>" method="post">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="nom" value="<%=alimento.nombre%>">
+                </div>
+                <div class="mb-3">
+                    <label for="cant" class="form-label">Cantidad disponible</label>
+                    <input type="number" name="cantidad" class="form-control" id="cant" value="<%=alimento.cantidadDisponible%>">
+                </div>
+
+                <!-- Tipo Combobox -->
+                <label for="tip" class="form-label">Tipo de alimento</label>
+                <select name="tipo" id="tip" class="form-select mb-3" aria-label="Default select example">
+                    <% tiposAlimento.forEach (function (tipoAlimento) { %>
+                        <option value="<%=tipoAlimento.idTipoAlimento%>"><%= tipoAlimento.tipo %></option>
+                    <% }) %>
+                  </select>
+
+                <div class="mb-3">
+                    <label for="prec" class="form-label">Precio</label>
+                    <input type="number" name="precio" class="form-control" id="prec" value="<%=alimento.precio%>">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Modificar alimento</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include( 'partials/_footerCliente')%>

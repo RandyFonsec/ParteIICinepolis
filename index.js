@@ -107,12 +107,67 @@ app.post('/admin/actualizarPelicula/:idPelicula', async(req, res) => {
     res.redirect('/admin/peliculas');
 });
 
-app.get('/admin/alimentos', (req, res) => {
-    res.render("alimentosAdmin.ejs");
+app.get('/admin/alimentos', async (req, res) => {
+    const alimentos = await controller.obtenerAlimentos();
+    const tiposAlimento = await controller.obtenerTiposAlimento();
+    res.render("alimentosAdmin.ejs", { alimentos, tiposAlimento });
 });
-app.get('/admin/clientes', (req, res) => {
-    res.render("clientesAdmin.ejs");
+
+app.post('/admin/registroAlimento', async (req, res) => {
+    const { nombre, cantidad, tipo, precio } = req.body;
+    const alimento = { nombre, cantidad, tipo, precio };
+    await controller.registrarAlimento(alimento);   
+    res.redirect('/admin/alimentos');
 });
+
+app.post("/admin/modificarAlimento/:idAlimento", async (req, res) => {
+    const { idAlimento } = req.params;
+    const alimento = await controller.obtenerAlimento(idAlimento);
+    const tiposAlimento = await controller.obtenerTiposAlimento();
+    res.render("modificarAlimento.ejs", { alimento : alimento[0], tiposAlimento });
+});
+
+app.post("/admin/eliminarAlimento/:idAlimento", async(req, res) => {
+    let { idAlimento } = req.params;
+    await controller.eliminarAlimento(idAlimento);
+    res.redirect('/admin/alimentos');
+});
+
+app.post('/admin/actualizarAlimento/:idAlimento', async (req, res) => {
+    const { idAlimento } = req.params;
+    const { nombre, cantidad, tipo, precio } = req.body;
+    const alimento = { nombre, cantidad, tipo, precio };
+    await controller.actualizarAlimento(idAlimento, alimento);
+    res.redirect('/admin/alimentos');
+});
+
+app.get('/admin/clientes', async (req, res) => {
+    const clientes = await controller.obtenerClientes();
+    res.render("clientesAdmin.ejs", { clientes });
+});
+
+app.post("/admin/modificarCliente/:idCliente", async (req, res) => {
+    const { idCliente } = req.params;
+    const cliente = await controller.obtenerCliente(idCliente);
+    res.render("modificarCliente.ejs", { cliente : cliente[0] });
+});
+
+app.post("/admin/eliminarCliente/:idCliente", async(req, res) => {
+    let { idCliente } = req.params;
+    await controller.eliminarCliente(idCliente);
+    res.redirect('/admin/clientes');
+});
+
+app.post('/admin/actualizarCliente/:idCliente', async (req, res) => {
+    const { idCliente } = req.params;
+    const { nombre, apellido1, apellido2, correo, edad, fechaNacimiento, vacunas } = req.body;
+    const cliente = { nombre, apellido1, apellido2, correo, edad, fechaNacimiento, vacunas };
+    console.log(cliente);
+    console.log(cliente.fechaNacimiento);
+    await controller.actualizarCliente(idCliente, cliente);
+    res.redirect('/admin/clientes');
+});
+
 app.get('/admin/cartelera', (req, res) => {
     res.render("carteleraAdmin.ejs");
 });

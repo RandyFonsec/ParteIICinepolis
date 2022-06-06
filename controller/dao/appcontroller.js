@@ -27,7 +27,7 @@ class AppController {
     }
 
     obtenerAlimentos() {
-        const selectAlimentos = 'SELECT * FROM Alimento';
+        const selectAlimentos = 'SELECT idAlimento, nombre, cantidadDisponible, precio, eliminado, tipo, a.idTipoAlimento FROM Alimento as a INNER JOIN TipoAlimento as ta ON a.idTipoAlimento = ta.idTipoAlimento WHERE eliminado = 0;';
         return db.query(selectAlimentos);
     }
 
@@ -157,7 +157,82 @@ class AppController {
         const asociarIdiomaPelicula = 'INSERT INTO IdiomaXPelicula (idPelicula, idIdioma) VALUES (?, ?);';
         await db.query(asociarIdiomaPelicula, [result.insertId, pelicula.idioma]);
     };*/
-    
+
+    registrarAlimento (alimento) {
+        const insertAlimento = 'INSERT INTO Alimento (nombre, cantidadDisponible, precio, eliminado, idTipoAlimento) VALUES (?, ?, ?, 0, ?);';
+        db.query(insertAlimento, [alimento.nombre, alimento.cantidad, alimento.precio, alimento.tipo], function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Alimento registrado exitosamente');
+            }
+        });
+    }
+
+    obtenerTiposAlimento () {
+        const selectTipoAlimento = 'SELECT idTipoAlimento, tipo FROM TipoAlimento;';
+        return db.query (selectTipoAlimento);
+    }
+
+    obtenerAlimento (idAlimento) {
+        const selectAlimento = 'SELECT idAlimento, nombre, cantidadDisponible, precio, eliminado, idTipoAlimento FROM Alimento WHERE idAlimento = ? AND eliminado = 0;';
+        return db.query (selectAlimento, [idAlimento]);
+    }
+
+    eliminarAlimento (idAlimento) {
+        const deleteAlimento = 'UPDATE Alimento SET eliminado = 1 WHERE idAlimento = ?;';
+        db.query(deleteAlimento, [idAlimento], function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Alimento eliminado exitosamente');
+            }
+        });
+    }
+
+    actualizarAlimento (idAlimento, alimento) {
+        const updateAlimento = 'UPDATE Alimento SET nombre = ?, cantidadDisponible = ?, precio = ?, idTipoAlimento = ? WHERE idAlimento = ?;';
+        db.query(updateAlimento, [alimento.nombre, alimento.cantidad, alimento.precio, alimento.tipo, idAlimento], function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Alimento actualizado exitosamente');
+            }
+        });
+    }
+
+    obtenerClientes () {
+        const selectClientes = 'SELECT idCliente, numeroCedula, nombre, apellido1, apellido2, correoElectronico, edad, DATE_FORMAT(fechaNacimiento, "%d %M %Y") as fechaNac, cantidadVacunas, eliminado, contrasenna FROM Cliente WHERE eliminado = 0;';
+        return db.query (selectClientes);
+    }
+
+    obtenerCliente (idCliente) {
+        const selectCliente = 'SELECT idCliente, numeroCedula, nombre, apellido1, apellido2, correoElectronico, edad, DATE_FORMAT(fechaNacimiento, "%d %M %Y") as fechaNac, cantidadVacunas, eliminado, contrasenna FROM Cliente WHERE idCliente = ? AND eliminado = 0;';
+        return db.query (selectCliente, [idCliente]);
+    }   
+
+    actualizarCliente (idCliente, cliente) {
+        const updateCliente = 'UPDATE Cliente SET nombre = ?, apellido1 = ?, apellido2 = ?, correoElectronico = ?, edad = ?, fechaNacimiento = ?, cantidadVacunas = ? WHERE idCliente = ?;';
+        db.query(updateCliente, [cliente.nombre, cliente.apellido1, cliente.apellido2, cliente.correo, cliente.edad, cliente.fechaNacimiento, cliente.vacunas, idCliente], function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Cliente actualizado exitosamente');
+            }
+        });
+    }
+
+    eliminarCliente (idCliente) {
+        const deleteCliente = 'UPDATE Cliente SET eliminado = 1 WHERE idCliente = ?;';
+        db.query(deleteCliente, [idCliente], function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Cliente eliminado exitosamente');
+            }
+        });
+    }
+
 }
 
 module.exports = AppController;
