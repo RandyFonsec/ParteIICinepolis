@@ -39,8 +39,14 @@
                                     <td><%=pelicula.edadRequerida%></td>
                                     <td><%=pelicula.precioEntrada%></td>
                                     <td>
-                                        <button type="button" class="btn btn-success">Success</button>
-                                        <button type="button" class="btn btn-danger">Danger</button>
+                                        <!-- <button type="button" class="btn btn-success" href="/admin/modificarPelicula/<%=pelicula.idPelicula%>">Modificar </button>
+                                        <button type="button" class="btn btn-danger" href="/admin/eliminarPelicula/<%=pelicula.idPelicula%>">Eliminar </button> -->
+                                        <form action="modificarPelicula/<%=pelicula.idPelicula%>" method="post">
+                                            <button type="submit" class="btn btn-success">Modificar </button>
+                                        </form>
+                                        <form action="eliminarPelicula/<%=pelicula.idPelicula%>" method="post">
+                                            <button type="submit" class="btn btn-danger">Eliminar </button>
+                                        </form>
                                     </td>
                                 </tr>
                             <% }) %>
@@ -59,26 +65,42 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form >
+                        <form action="registroPelicula" method="post">
                             <div class="mb-3">
                                 <label for="idTitulo" class="form-label">Título</label>
                                 <input type="text" name="titulo" class="form-control" id="idTitulo">
                             </div>
+                            <label class="mb-3" for="director">Director</label>
                             <div class="mb-3">
-                                <label for="idDir" class="form-label">Director</label>
-                                <input type="text" name="director" class="form-control" id="idDir">
+                                <select name="director" class="form-select" aria-label="Directores">
+                                    <% directores.forEach (function (director) { %>
+                                        <option value="<%=director.idDirector%>"><%= director.nombre %></option>
+                                    <% }) %>
+                                </select>
                             </div>
+                            <label class="mb-3" for="actor">Actor</label>
                             <div class="mb-3">
-                                <label for="idAc" class="form-label">Actores</label>
-                                <input type="text" name="actores" class="form-control" id="idAc">
+                                <select name="actor" class="form-select" aria-label="Actores">
+                                    <% actores.forEach (function (actor) { %>
+                                        <option value="<%=actor.idActor%>"><%= actor.nombre %></option>
+                                    <% }) %>
+                                </select>
                             </div>
+                            <label class="mb-3" for="genero">Genero</label>
                             <div class="mb-3">
-                                <label for="idGen" class="form-label">Géneros</label>
-                                <input type="text" name="generos" class="form-control" id="idGen">
+                                <select name="genero" class="form-select" aria-label="Generos">
+                                    <% generos.forEach (function (genero) { %>
+                                        <option value="<%=genero.idGenero%>"><%= genero.nombreGenero %></option>
+                                    <% }) %>
+                                </select>
                             </div>
+                            <label class="mb-3" for="idioma">Idioma</label>
                             <div class="mb-3">
-                                <label for="idi" class="form-label">Idiomas</label>
-                                <input type="text" name="idiomas" class="form-control" id="idi">
+                                <select name="idioma" class="form-select" aria-label="Idiomas">
+                                    <% idiomas.forEach (function (idioma) { %>
+                                        <option value="<%=idioma.idIdioma%>"><%= idioma.nombreIdioma %></option>
+                                    <% }) %>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="pub" class="form-label">Año de publicación</label>
@@ -92,6 +114,10 @@
                                 <label for="edr" class="form-label ">Edad requerida</label>
                                 <input type="text" name="edadRequerida" class="form-control" id="edr">
                             </div>
+                            <div class="mb-3">
+                                <label for="precioentrada" class="form-label ">Precio de entrada</label>
+                                <input type="text" name="precioEntrada" class="form-control" id="precioentrada">
+                            </div>
                             <button type="submit" class="btn btn-primary">Agregar película</button>
                         </form>
                     </div>
@@ -99,7 +125,6 @@
             </div>
         </div>
         <!-- Modal-->
-
 
     </div>
 

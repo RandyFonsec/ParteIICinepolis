@@ -1,0 +1,44 @@
+<%- include( 'partials/_headerCliente')%>
+
+<!-- Modal -->
+<div class="container my-4 d-flex justify-content-center">
+    
+            
+    <div class="container">
+        <div class="mb-3">
+        <label for="" class="fs-2 text">Modificar alimento:</label>
+    </div>
+
+    <form action="/admin/actualizarCliente/<%=cliente.idCliente%>" method="post">
+    <div class="mb-3">
+        <label for="idName" class="form-label">Nombre</label>
+        <input type="text" name="nombre" class="form-control" id="idName" value="<%=cliente.nombre%>">
+    </div>
+    <div class="mb-3">
+        <label for="idApe1" class="form-label">Primer apellido</label>
+        <input type="text" name="apellido1" class="form-control" id="idApe1" value="<%=cliente.apellido1%>">
+    </div>
+    <div class="mb-3">
+        <label for="idApe2" class="form-label">Segundo apellido</label>
+        <input type="text" name="apellido2" class="form-control" id="idApe2" value="<%=cliente.apellido2%>">
+    </div>
+    <div class="mb-3">
+        <label for="idCorreo" class="form-label">Correo</label>
+        <input type="email" name="correo" class="form-control" id="idCorreo" value="<%=cliente.correoElectronico%>">
+    </div>
+    <div class="mb-3">
+        <label for="idEdad" class="form-label">Edad</label>
+        <input type="number" name="edad" class="form-control" id="idEdad" value="<%=cliente.edad%>">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Fecha de nacimiento</label>
+        <input type="date" name="fechaNacimiento" class="form-control" id="idFechaNac">
+    </div>
+    <div class="mb-3">
+        <label for="idVacunas" class="form-label">Vacunas</label>
+        <input type="number" name="vacunas" class="form-control" id="idVacunas" value="<%=cliente.cantidadVacunas%>">
+    </div>
+    <button type="submit" class="btn btn-primary">Modificar cliente</button>
+</form>
+
+    </div>
