@@ -69,11 +69,27 @@ app.get('/cliente/cartelera', async(req, res) => {
     res.render("carteleraCliente.ejs", { peliculas });
 });
 
+app.get('/cliente/cartelera/:id', async(req, res) => {
+    const { id } = req.params;
+    const peliculas = await controller.obtenerPeliculasCartelera();
+    const pelicula = await controller.obtenerPeliculaByID(id);
 
-
-app.get('/cliente/Alimentos', (req, res) => {
-    res.render("alimentosCliente.ejs");
+    res.render("carteleraCliente.ejs", { peliculas, pelicula });
 });
+
+
+app.get('/cliente/alimentos', async(req, res) => {
+    const alimentos = await controller.obtenerAlimentos();
+    console.log(alimentos[0])
+    res.render("alimentosCliente.ejs", { alimentos });
+});
+
+app.get('/cliente/alimentos/:id', async(req, res) => {
+    const alimentos = await controller.obtenerAlimentos();
+    console.log(alimentos);
+    res.render("alimentosCliente.ejs", { alimentos });
+});
+
 app.get('/cliente/carrito', (req, res) => {
     res.render("carrito.ejs");
 });
