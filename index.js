@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
     res.render("login.ejs");
 });
 
-app.get('/admin/peliculas', async (req, res) => {
+app.get('/admin/peliculas', async(req, res) => {
     const peliculas = await controller.obtenerPeliculas();
     res.render("peliculasAdmin.ejs", { peliculas });
 });
@@ -64,8 +64,9 @@ app.get('/admin/cartelera', (req, res) => {
 });
 
 // ------------- CLIENTE
-app.get('/cliente/cartelera', (req, res) => {
-    res.render("carteleraCliente.ejs", { listaPeliculasm, listam });
+app.get('/cliente/cartelera', async(req, res) => {
+    const peliculas = await controller.obtenerPeliculasCartelera();
+    res.render("carteleraCliente.ejs", { peliculas });
 });
 
 

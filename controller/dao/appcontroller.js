@@ -1,4 +1,4 @@
-const db = require ('./dbConnection');
+const db = require('./dbConnection');
 
 class AppController {
 
@@ -10,12 +10,16 @@ class AppController {
         }
         return AppController.instanceController;
     }
-    
-    obtenerPeliculas () {
+
+    obtenerPeliculas() {
         const selectPeliculas = 'SELECT titulo, annoPublicacion, duracion, edadRequerida, precioEntrada FROM Pelicula WHERE eliminada = 0 ;';
-        return db.query (selectPeliculas);
+        return db.query(selectPeliculas);
     }
 
+    obtenerPeliculasCartelera() {
+        const selectPeliculas = 'SELECT DISTINCT p.titulo, p.precioEntrada, p.edadRequerida FROM Funcion AS f INNER JOIN Pelicula as p ON p.idPelicula = f.idPelicula;';
+        return db.query(selectPeliculas);
+    }
 }
 
 module.exports = AppController;
