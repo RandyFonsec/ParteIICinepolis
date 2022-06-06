@@ -51,10 +51,11 @@ app.get('/', (req, res) => {
 app.post('/', async(req, res) => {
     var { correo, contrasenna } = req.body;
 
-    if (nombreUsuario == 'admin' && contrasenna == 'admin') {
+    if (correo == 'admin' && contrasenna == 'admin') {
+        console.log("hola")
         res.redirect('/admin/peliculas');
     } else {
-        const result = await controller.validarUsuario(nombreUsuario, contrasenna);
+        const result = await controller.validarUsuario(correo, contrasenna);
         if (result.length == 0) {
             const mensaje = 'Correo o contraseña incorrectos';
             res.render('login.ejs', { error: mensaje })
@@ -62,11 +63,11 @@ app.post('/', async(req, res) => {
             res.redirect('/cliente/cartelera');
         }
     }
-    res.render("login.ejs");
 });
+
 app.get('/admin/peliculas', async(req, res) => {
-    const peliculas = await controller.obtenerPeliculas();
-    res.render("peliculasAdmin.ejs", { peliculas });
+    // const peliculas = await controller.obtenerPeliculas();
+    res.render("peliculasAdmin.ejs"); //, { peliculas });
 });
 
 app.get('/admin/alimentos', (req, res) => {
