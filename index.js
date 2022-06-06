@@ -48,6 +48,22 @@ app.get('/', (req, res) => {
     res.render("login.ejs");
 });
 
+app.post('/', async(req, res) => {
+    var { correo, contrasenna } = req.body;
+
+    if (nombreUsuario == 'admin' && contrasenna == 'admin') {
+        res.redirect('/admin/peliculas');
+    } else {
+        const result = await controller.validarUsuario(nombreUsuario, contrasenna);
+        if (result.length == 0) {
+            const mensaje = 'Correo o contraseña incorrectos';
+            res.render('login.ejs', { error: mensaje })
+        } else {
+            res.redirect('/cliente/cartelera');
+        }
+    }
+    res.render("login.ejs");
+});
 app.get('/admin/peliculas', async(req, res) => {
     const peliculas = await controller.obtenerPeliculas();
     res.render("peliculasAdmin.ejs", { peliculas });

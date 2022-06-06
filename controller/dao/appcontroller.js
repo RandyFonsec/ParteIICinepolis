@@ -10,6 +10,10 @@ class AppController {
         }
         return AppController.instanceController;
     }
+    validarUsuario(correo, contra) {
+        const selectUsuario = 'SELECT * FROM Cliente WHERE correoElectronico = ? AND contrasenna = ? ;';
+        return db.query(selectUsuario, [correo, contra]);
+    }
 
     obtenerPeliculaByID(id) {
         const selectPeliculas = 'SELECT idPelicula, titulo, annoPublicacion, duracion, edadRequerida, precioEntrada FROM Pelicula WHERE idPelicula = ?;';
