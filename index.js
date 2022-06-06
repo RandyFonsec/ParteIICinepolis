@@ -52,7 +52,6 @@ app.post('/', async(req, res) => {
     var { correo, contrasenna } = req.body;
 
     if (correo == 'admin' && contrasenna == 'admin') {
-        console.log("hola")
         res.redirect('/admin/peliculas');
     } else {
         const result = await controller.validarUsuario(correo, contrasenna);
@@ -90,19 +89,20 @@ app.get('/cliente/cartelera/:id', async(req, res) => {
     const { id } = req.params;
     const peliculas = await controller.obtenerPeliculasCartelera();
     const pelicula = await controller.obtenerPeliculaByID(id);
-
-    res.render("carteleraCliente.ejs", { peliculas, pelicula });
+    console.log(pelicula);
+    res.render("carteleraCliente.ejs", { peliculas, pelicula: pelicula[0] });
 });
 
 
 app.get('/cliente/alimentos', async(req, res) => {
     const alimentos = await controller.obtenerAlimentos();
-    console.log(alimentos[0])
+    console.log(alimentos)
     res.render("alimentosCliente.ejs", { alimentos });
 });
 
 app.get('/cliente/alimentos/:id', async(req, res) => {
-    const alimentos = await controller.obtenerAlimentos();
+    const { id } = req.params;
+    const alimentos = await controller.obtenerAlimentosByTipo(id);
     console.log(alimentos);
     res.render("alimentosCliente.ejs", { alimentos });
 });

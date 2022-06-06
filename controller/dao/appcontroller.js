@@ -29,6 +29,11 @@ class AppController {
         const selectAlimentos = 'SELECT * FROM Alimento';
         return db.query(selectAlimentos);
     }
+
+    obtenerAlimentosByTipo(tipo) {
+        const selectAlimentos = 'SELECT * FROM Alimento WHERE idTipoAlimento =?';
+        return db.query(selectAlimentos, [tipo]);
+    }
 }
 
 module.exports = AppController;

@@ -5,7 +5,17 @@
 
 
             <div class="row my-5">
-
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Tipo de comida
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/cliente/alimentos">Cualquiera</a></li>
+                        <li><a class="dropdown-item" href="/cliente/alimentos/1">Comida</a></li>
+                        <li><a class="dropdown-item" href="/cliente/alimentos/2">Bebida</a></li>
+                        <li><a class="dropdown-item" href="/cliente/alimentos/3">Combo</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="row mt-5 mb-2">
                 <h2>Lista de alimentos:</h2>
@@ -22,9 +32,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%for(var i = 0; alimentos.length; i++){%>
+                            <%for(var i = 0; i<alimentos.length; i++){%>
+                                <tr>
+                                    <td>
+                                        <%=alimentos[i].nombre%>
+                                    </td>
+                                    <td>
+                                        <%=alimentos[i].precio%>
+                                    </td>
+                                    <td>
 
-                                Hola <br>
+                                        <a href="#" type="button" class="btn btn-secondary">Agregar al carrito</a>
+                                    </td>
+                                </tr>
                                 <%}%>
                         </tbody>
                     </table>
