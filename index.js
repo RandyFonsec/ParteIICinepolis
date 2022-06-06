@@ -5,6 +5,8 @@ const session = require('express-session');
 
 const db = require('./controller/dao/dbConnection');
 
+const AppController = require('./controller/dao/appcontroller');
+const controller = new AppController();
 
 // Para compilar en desarrollo: npm run dev
 
@@ -45,9 +47,12 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.render("login.ejs");
 });
-app.get('/admin/peliculas', (req, res) => {
-    res.render("peliculasAdmin.ejs");
+
+app.get('/admin/peliculas', async (req, res) => {
+    const peliculas = await controller.obtenerPeliculas();
+    res.render("peliculasAdmin.ejs", { peliculas });
 });
+
 app.get('/admin/alimentos', (req, res) => {
     res.render("alimentosAdmin.ejs");
 });

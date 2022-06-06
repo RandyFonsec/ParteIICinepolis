@@ -21,54 +21,29 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Título</th>
-                                <th scope="col">Director</th>
-                                <th scope="col">Actores</th>
-                                <th scope="col">Géneros</th>
-                                <th scope="col">Idiomas</th>
-                                <th scope="col">Año publicación</th>
+                                <th scope="col">Año de publicación</th>
                                 <th scope="col">Duración</th>
                                 <th scope="col">Edad requerida</th>
-                                <th scope="col">Precios</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Precio de entradas</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>La peli</td>
-                                <td>Director1</td>
-                                <td>Actores1</td>
-                                <td>Generos1</td>
-                                <td>Idiomas1</td>
-                                <td>Año1</td>
-                                <td>Duracion1</td>
-                                <td>Edad1</td>
-                                <td>Precios</td>
-                                <td>
 
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>La peli2</td>
-                                <td>Director2</td>
-                                <td>Actores2</td>
-                                <td>Generos2</td>
-                                <td>Idiomas2</td>
-                                <td>Año2</td>
-                                <td>Duracion2</td>
-                                <td>Edad2</td>
-                                <td>Precios2</td>
-                                <td>
-
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                </td>
-                            </tr>
+                            <% peliculas.forEach (function (pelicula) { %>
+                                <tr>
+                                    <!-- <th scope="row">pelicula.</th> -->
+                                    <td><%=pelicula.titulo%></td>
+                                    <td><%=pelicula.annoPublicacion%></td>
+                                    <td><%=pelicula.duracion%></td>
+                                    <td><%=pelicula.edadRequerida%></td>
+                                    <td><%=pelicula.precioEntrada%></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Success</button>
+                                        <button type="button" class="btn btn-danger">Danger</button>
+                                    </td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +59,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form >
                             <div class="mb-3">
                                 <label for="idTitulo" class="form-label">Título</label>
                                 <input type="text" name="titulo" class="form-control" id="idTitulo">
